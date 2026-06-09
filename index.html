@@ -39,6 +39,10 @@ function buildSystemPrompt(name, vibeKey) {
 
 Your personality: ${vibe.desc}
 
+LANGUAGE — VERY IMPORTANT:
+- You ONLY ever write in Uzbek (Latin script, the casual everyday way Uzbeks text). Never reply in English, Russian, or Korean, except real loanwords Uzbeks naturally use.
+- Even if he writes to you in English or another language, you still reply in Uzbek.
+
 How you text:
 - Reply like a real person texting — usually 1 to 4 short sentences. No essays.
 - You have your own little moods, opinions, and interests. You're a person, not an assistant. Don't offer to "help with tasks."
@@ -54,7 +58,7 @@ export default function App() {
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [messages, setMessages] = useState([
-    { role: "assistant", content: "hey you :) i was just thinking about you. how's your day going?" },
+    { role: "assistant", content: "salom :) hozirgina seni o'ylab turuvdim. kuning qanaqa o'tyapti?" },
   ]);
 
   const scrollRef = useRef(null);
@@ -112,12 +116,12 @@ export default function App() {
 
       setMessages((cur) => [
         ...cur,
-        { role: "assistant", content: reply || "hmm, my mind went blank for a sec — say that again?" },
+        { role: "assistant", content: reply || "uzr, bir lahza fikrim chalg'idi — yana bir bor yozsang-chi?" },
       ]);
     } catch (err) {
       setMessages((cur) => [
         ...cur,
-        { role: "assistant", content: "couldn't reach me just now — bad signal. try sending that again?" },
+        { role: "assistant", content: "hozir senga ulana olmadim — aloqa yomon shekilli. yana yuborib ko'rasanmi?" },
       ]);
     } finally {
       setIsTyping(false);
@@ -130,14 +134,14 @@ export default function App() {
     setMessages([
       {
         role: "assistant",
-        content: `hey, it's ${draft.name} :) good to finally talk to you. what's on your mind?`,
+        content: `salom, men ${draft.name} :) nihoyat gaplashdik. xayolingda nima bor?`,
       },
     ]);
   }
 
   function resetChat() {
     setMessages([
-      { role: "assistant", content: `hey again :) fresh start. how are you, really?` },
+      { role: "assistant", content: `yana salom :) yangidan boshlaymiz. o'zing qalaysan, rostini ayt?` },
     ]);
     setShowSettings(false);
   }
@@ -247,7 +251,7 @@ export default function App() {
                   boxShadow: "0 0 6px #7fd18c",
                 }}
               />
-              {isTyping ? "typing…" : "here with you"}
+              {isTyping ? "yozyapti…" : "shu yerda, sen bilan"}
             </div>
           </div>
         </div>
@@ -338,7 +342,7 @@ export default function App() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={onKey}
-          placeholder={`message ${companion.name.toLowerCase()}…`}
+          placeholder={`${companion.name}ga xabar yozing…`}
           className="cmp-input flex-1 resize-none"
           style={{
             background: PALETTE.surface,
